@@ -14,7 +14,6 @@ return {
 
     config = function()
         require('mason').setup({})
-        require('lspconfig').clangd.setup({})
 
         local lsp = require('lsp-zero')
         lsp.preset('recommended')
@@ -22,6 +21,8 @@ return {
         lsp.on_attach(function(client, bufnr)
             lsp.default_keymaps({buffer = bufnr})
         end)
+
+        require('lspconfig').clangd.setup({})
 
         local cmp = require('cmp')
 
