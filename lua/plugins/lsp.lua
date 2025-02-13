@@ -23,6 +23,7 @@ return {
         end)
 
         require('lspconfig').clangd.setup({})
+        require('lspconfig').julials.setup({})
 
         local cmp = require('cmp')
 
