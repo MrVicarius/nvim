@@ -22,6 +22,7 @@ return {
             lsp.default_keymaps({buffer = bufnr})
         end)
 
+        require('lspconfig').lua_ls.setup({})
         require('lspconfig').clangd.setup({})
         require('lspconfig').julials.setup({})
 
