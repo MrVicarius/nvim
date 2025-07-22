@@ -26,6 +26,27 @@ return {
         require('lspconfig').clangd.setup({})
         require('lspconfig').julials.setup({})
 
+        vim.g.zig_fmt_parse_errors = 0
+        vim.g.zig_fmt_autosave = 0
+        vim.api.nvim_create_autocmd('BufWritePre',{
+            pattern = {"*.zig", "*.zon"},
+            callback = function(ev)
+                vim.lsp.buf.format()
+            end
+        })
+
+        vim.api.nvim_create_autocmd('BufWritePre',{
+            pattern = {"*.zig", "*.zon"},
+            callback = function(ev)
+                vim.lsp.buf.code_action({
+                    context = { only = { "source.fixAll" } },
+                    apply = true,
+                })
+            end
+        })
+
+        require('lspconfig').zls.setup({})
+
         local cmp = require('cmp')
 
         cmp.setup({
